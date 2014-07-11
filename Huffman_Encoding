@@ -1,3 +1,11 @@
+/*
+Travis Dacosta
+CS 391
+Object Oriented Programming-C++
+Huffman Encoding
+*/
+
+
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
