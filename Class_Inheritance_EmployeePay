@@ -17,7 +17,65 @@ class Employee
 {
       public:
 
-      void GetInfo(){
+      void GetInfo();
+      
+      protected:
+                
+      long int myIDnum;
+      string lname, fname;
+      char MI;
+      int departnum;           
+      string departinit;                               
+      };
+
+class SalariedEmployee: public Employee{
+      
+      public:
+      
+      void GetYearlySalary();
+      void PayFrequency();
+      void PayPeriodPay();
+      
+      
+       protected:
+       
+       float GrossPay, payforperiod;
+       int payfreq;
+      
+      };
+      
+class HourlyEmployee: public Employee{
+            
+            public:
+            
+            void AnnuallyPay();
+            
+            protected:
+                      
+            float myHourlyWage, HoursWorked, pay;
+            
+            };
+            
+
+int main(int argc, char *argv[])
+{ 
+    Employee object1;
+    SalariedEmployee object2;
+    HourlyEmployee object3;
+    
+    object1.GetInfo();
+    object2.GetYearlySalary();
+    object2.PayFrequency();
+    object2.PayPeriodPay();
+    object3.AnnuallyPay();
+    
+    cout << "\n";
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
+
+
+ void Employee::GetInfo(){
       
       cout<<setw(50)<<"*** Employee Info ****\n\n";
       
@@ -65,25 +123,14 @@ class Employee
       
       
       }
-      protected:
-                
-      long int myIDnum;
-      string lname, fname;
-      char MI;
-      int departnum;           
-      string departinit;                               
-      };
-
-class SalariedEmployee: public Employee{
       
-      public:
       
-      void GetYearlySalary(){
+       void SalariedEmployee::GetYearlySalary(){
            
            cout<<setw(50) <<"*******Salaried Employee Pay Rate Information******* \n\n";
            
            do{
-           cout << "Enter Yearly Gross Pay, which is before tax deductions: \n";
+           cout << "Enter Yearly Gross Pay, which is before tax deductions: ";
            while (!(cin>>GrossPay)){
                  cin.clear();
                  cin.ignore(10000,'\n');
@@ -100,19 +147,21 @@ class SalariedEmployee: public Employee{
            }
            while(GrossPay<=0);
            }  //end of Get Yearly Salary function   
-      void PayFrequency(){
+      
+      
+ void SalariedEmployee::PayFrequency(){
            
            do{
-           cout << "\nEnter pay frequency according to weeks, so if you getting \npaid once = 1, twice = 2, quarterly = 4, monthly = 12, & weekly = 54: \n";
+           cout << "\nEnter pay frequency according to weeks, so if you getting \npaid once = 1, twice = 2, quarterly = 4, monthly = 12, & weekly = 54: ";
            while(!(cin>>payfreq)){
                 cin.clear();
                 cin.ignore(10000,'\n');
-                cout<<"Please enter an integer for the pay frequency: "<<flush;
+                cout<<"\nPlease enter an integer for the pay frequency: "<<flush;
                 cout<<"\a";                       
            }
                       
            if (payfreq>0)
-           cout<< "This salaried employee gets paid every: "<< payfreq << " week(s).\n";               
+           cout<< "\nThis salaried employee gets paid every: "<< payfreq << " week(s).\n";               
                  
            
            else 
@@ -123,8 +172,9 @@ class SalariedEmployee: public Employee{
            while (payfreq<=0);
 
            }//end of Payfrequency function
-           
-           void PayPeriodPay(){
+
+ 
+ void SalariedEmployee::PayPeriodPay(){
                 
                 float payforperiod = 0;
                 
@@ -133,19 +183,8 @@ class SalariedEmployee: public Employee{
            cout<< "\nThis salaried employee received $"<<payforperiod<<" for their given pay period.\n\n";
            return;
            }//end of PayPeriodPay function
-                
-       protected:
-       
-       float GrossPay, payforperiod;
-       int payfreq;
-      
-      };
-      
-class HourlyEmployee: public Employee{
-            
-            public:
-            
-            void AnnuallyPay(){
+           
+void HourlyEmployee::AnnuallyPay(){
             
             float pay = 0;
             
@@ -155,7 +194,7 @@ class HourlyEmployee: public Employee{
             while(!(cin>> myHourlyWage)){
                 cin.clear();
                 cin.ignore(10000,'\n');
-                cout<<"Please enter an float for myHourlyWage: "<<flush;
+                cout<<"\nPlease enter an float for myHourlyWage: "<<flush;
                 cout<<"\a";                       
            } 
             
@@ -173,27 +212,5 @@ class HourlyEmployee: public Employee{
              
             return;                    
             }
-            
-            protected:
-                      
-            float myHourlyWage, HoursWorked, pay;
-            
-            };
-            
-
-int main(int argc, char *argv[])
-{ 
-    Employee object1;
-    SalariedEmployee object2;
-    HourlyEmployee object3;
-    
-    object1.GetInfo();
-    object2.GetYearlySalary();
-    object2.PayFrequency();
-    object2.PayPeriodPay();
-    object3.AnnuallyPay();
-    
-    cout << "\n";
-    system("PAUSE");
-    return EXIT_SUCCESS;
-}
+                       
+           
